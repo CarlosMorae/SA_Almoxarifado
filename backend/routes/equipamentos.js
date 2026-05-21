@@ -16,7 +16,7 @@ router.get("/listarTodos", (req, res) => {
 });
 
 router.post("/criar", (req, res) => {
-    const {nome, marca, patrimonio} = req.body;
+    const { nome, marca, patrimonio } = req.body;
     const sql = "INSERT INTO equipamentos (nome, marca, patrimonio) VALUES (?, ?, ?)"
 
     connection.query(sql, [nome, marca, patrimonio], (error) => {
@@ -24,8 +24,19 @@ router.post("/criar", (req, res) => {
             return res.status(500).json(error);
         };
 
-        res.status(200).json({mensagem: "Equipamento cadastrado com sucesso!"})
+        res.status(200).json({ mensagem: "Equipamento cadastrado com sucesso!" })
     });
 });
+
+router.put("./editar/:id", (req, res) => {
+    const { id } = req.params;
+    const { nome, marca, patrimonio } = req.body;
+});
+
+router.delete("/excluir/:id", (req, res) => {
+    const { id } = req.params;
+});
+
+
 
 module.exports = router;

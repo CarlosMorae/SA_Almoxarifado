@@ -21,8 +21,19 @@ async function listarEquipamentos() {
             </td>
             </tr>`;
         });
-    } catch(error){
+    } catch (error) {
         console.log(error);
+    };
+};
+
+async function excluirEquipamentos(id) {
+    try {
+        await fetch(`${url}/excluir/${id}`, {
+            method: "DELETE"
+        })
+        listarEquipamentos()
+    } catch (error) {
+
     }
 }
 
