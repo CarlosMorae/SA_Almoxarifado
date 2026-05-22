@@ -15,6 +15,19 @@ router.get("/listarTodos", (req, res) => {
     });
 });
 
+router.get("/listarID/:id", (req, res) => {
+    const { id } = req.params;
+    const sql = "SELECT * FROM equipamentos WHERE id = ?"
+
+    connection.query(sql, [id], (error, results) => {
+        if (error) {
+            return res.status(500).json(error);
+        };
+
+        res.status(201).json(results)
+    });
+});
+
 router.post("/criar", (req, res) => {
     const { nome, marca, patrimonio } = req.body;
     const sql = "INSERT INTO equipamentos (nome, marca, patrimonio) VALUES (?, ?, ?)"
